@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ElteMeter</string>
+    <string name="StartService">Start service</string>
+    <string name="StopService">Stop service</string>
+</resources>
