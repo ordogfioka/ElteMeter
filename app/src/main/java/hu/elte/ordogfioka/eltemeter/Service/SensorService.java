@@ -157,32 +157,40 @@ public class SensorService extends Service implements SensorInterface {
         @Override
         protected Void doInBackground(Void... params) {
             try {
+                ///Connect to bluetooth device
                 //remote Bluetooth device address
-                final String remoteDevice = "";
+                final String remoteDevice = "C0:F8:DA:10:78:5C";
                 final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
                 dev = btAdapter.getRemoteDevice(remoteDevice);
-
+                //prevent high energy consumption
                 btAdapter.cancelDiscovery();
-
                 sock = dev.createRfcommSocketToServiceRecord(APP_UUID);
                 sock.connect();
+
                 isBitalinoInitialized = true;
 
+                //Start Bitalino
                 bitalino = new BITalinoDevice(1000, new int[]{0, 1, 2, 3, 4, 5});
-                bitalino.open(sock.getInputStream(),sock.getOutputStream());
-
+                bitalino.open(sock.getInputStream(), sock.getOutputStream());
                 bitalino.start();
 
+                //Get Bitalinoframes
                 final int numOfSamples = 1000;
-                for(int i = 0; i < numOfSamples; ++i){
+                for (int i = 0; i < numOfSamples; ++i) {
                     BITalinoFrame[] frames = bitalino.read(numOfSamples);
-                    for (BITalinoFrame frame : frames){
-                        publishProgress(frame.toString());
+                    for (BITalinoFrame frame : frames) {
+                        Log.i(logname, frame.toString());
                     }
                 }
             } catch (IOException e) {
+                publishProgress("Bluetooth device is off");
+                Log.i(logname, "Bluetooth device is off");
                 e.printStackTrace();
             } catch (BITalinoException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                publishProgress("Given Bluetooth address is not valid");
+                Log.i(logname, "Given Bluetooth address is not valid");
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -191,11 +199,12 @@ public class SensorService extends Service implements SensorInterface {
             return null;
         }
 
-        protected void onProgressUpdate(Integer... progress){
+        protected void onProgressUpdate(Integer... progress) {
+            Toast.makeText(getApplicationContext(),progress[0],Toast.LENGTH_LONG).show();
         }
 
         @Override
-        protected void onCancelled(){
+        protected void onCancelled() {
             try {
                 bitalino.stop();
                 sock.close();
