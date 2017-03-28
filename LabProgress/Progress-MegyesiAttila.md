@@ -8,3 +8,7 @@
 - Desingning the componenest
 - Refactor the service
 - Fix the apk install crash
+## 2017 03 28
+-Looking up for SDK in order to integrate Mi Band 2
+-https://github.com/Freeyourgadget/Gadgetbridge
+-https://github.com/pangliang/miband-sdk-android
