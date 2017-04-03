@@ -18,5 +18,5 @@
 - The service long running
 - The service and the registered classes must be in the same thread.
 - If you want to do a havy action make your own class in this thread and register to the listener and do the heavy action in 
-another thread or use implement the [Runnable](https://developer.android.com/reference/java/lang/Runnable.html) interface instead.
+another [Thread](https://developer.android.com/reference/java/lang/Thread.html) or use implement the [Runnable](https://developer.android.com/reference/java/lang/Runnable.html) interface instead.
 ![Alt text](https://github.com/ordogfioka/ElteMeter/blob/master/LabProgress/Picture/GpsData.png "Gps sensor data")
