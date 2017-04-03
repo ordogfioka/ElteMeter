@@ -13,4 +13,4 @@
 - https://github.com/Freeyourgadget/Gadgetbridge
 - https://github.com/pangliang/miband-sdk-android
 ## 2017 03 28
-![Alt text](\Picture\GpsData.png?raw=true "Gps sensor data")
+![Alt text](https://github.com/ordogfioka/ElteMeter/blob/master/LabProgress/Picture/GpsData.png "Gps sensor data")
