@@ -12,9 +12,9 @@ import android.hardware.SensorEvent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -34,23 +34,19 @@ import java.util.UUID;
  * Created by Attila on 2017. 03. 07..
  */
 
-public class SensorService extends Service implements SensorInterface {
+public class SensorService extends Service implements SensorInterface,ConnectionInterface {
     private static final String logname = "SensorService";
     private LocationManager lm;
-    private UpdateUI updateUI;
     List<SensorInterface> listeners = new ArrayList<>();
     private boolean isBitalinoInitialized = false;
     private static final UUID APP_UUID = UUID.randomUUID();
+    private final IBinder mBinder = new LocalBinder();
 
     @Override
     public void onCreate() {
         Log.i(logname, "onCreate");
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         super.onCreate();
-
-        updateUI = new UpdateUI(this);
-
-        registerListener(updateUI);
 
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager
@@ -69,6 +65,7 @@ public class SensorService extends Service implements SensorInterface {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this,"Service started!",Toast.LENGTH_LONG).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -85,28 +82,41 @@ public class SensorService extends Service implements SensorInterface {
             }
             lm.removeUpdates(this);
         }
-
-        unregisterListener(updateUI);
         super.onDestroy();
     }
 
-    @Nullable
+    public class LocalBinder extends Binder {
+        public ConnectionInterface getService() {
+            return SensorService.this;
+        }
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mBinder;
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Log.i(logname, sensorEvent.toString());
-        Toast.makeText(this, sensorEvent.toString(), Toast.LENGTH_LONG).show();
+        for (SensorInterface si : listeners) {
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onSensorChanged(sensorEvent);
+            }
+        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
         Log.i(logname, sensor.toString() + " accuaracy: " + i);
         for (SensorInterface si : listeners) {
-            si.onAccuracyChanged(sensor, i);
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onAccuracyChanged(sensor, i);
+            }
         }
     }
 
@@ -114,35 +124,56 @@ public class SensorService extends Service implements SensorInterface {
     public void onLocationChanged(Location location) {
         Log.i(logname, location.toString());
         for (SensorInterface si : listeners) {
-            si.onLocationChanged(location);
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onLocationChanged(location);
+            }
         }
     }
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
+        Log.i(logname, s.toString());
         for (SensorInterface si : listeners) {
-            si.onStatusChanged(s, i, bundle);
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onStatusChanged(s, i, bundle);
+            }
         }
     }
 
     @Override
     public void onProviderEnabled(String s) {
+        Log.i(logname, s);
         for (SensorInterface si : listeners) {
-            si.onProviderEnabled(s);
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onProviderEnabled(s);
+            }
         }
     }
 
     @Override
     public void onProviderDisabled(String s) {
+        Log.i(logname, s);
         for (SensorInterface si : listeners) {
-            si.onProviderDisabled(s);
+            if(si == null){
+                unregisterListener(si);
+            } else {
+                si.onProviderDisabled(s);
+            }
         }
     }
 
+    @Override
     public void registerListener(SensorInterface listener) {
         listeners.add(listener);
     }
 
+    @Override
     public void unregisterListener(SensorInterface listener) {
         listeners.remove(listener);
     }
