@@ -1,4 +1,4 @@
-# Smart Home lab progress - MakoviczkiAndras#
+# Smart Home lab progress - MakoviczkiAndras
 
 ## 2017 03 14
 - Investigate the Bitalino sensors
