@@ -12,7 +12,7 @@
 - Looking up for SDK in order to integrate Mi Band 2
 - https://github.com/Freeyourgadget/Gadgetbridge
 - https://github.com/pangliang/miband-sdk-android
-## 2017 03 28
+## 2017 04 04
 - Refactor service
 - Now we can bind and register listeners to the service
 - The service long running
