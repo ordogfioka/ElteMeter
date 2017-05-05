@@ -28,4 +28,36 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.bitalino:bitalino-java-sdk:1.1.0'
     compile 'com.zhaoxiaodan.miband:miband-sdk:1.1.2'
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/Common-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/Connectivity-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/Parser-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/sdmdatasource-1.214.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/mafsdmdatasourceadapter-1.214.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/AfariaSLL-7.00.6169.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/ClientHubSLL-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/ClientLog-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/CommonCertificateProvider-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/DataVaultLib-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/E2ETrace-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/gson-2.2.4.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/HttpConvAuthFlows-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/HttpConversation-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/mafextensibility-1.214.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/maflogger-1.214.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/MobilePlace-3.14.0-javadoc.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/ODataAPI-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/odataoffline.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/perflib-1.2.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/sap-e2etrace-2.3.8.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/simple-xml-2.7.1.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/SupportabilityFacade-3.14.0.jar')
+    compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/XscriptParser-3.14.0.jar')
+    compile project(':Request-3.14.0')
+    compile project(':CoreServices-3.14.0')
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
 }
