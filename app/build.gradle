@@ -54,6 +54,7 @@ dependencies {
     compile files('C:/Users/amakoviczki/StudioProjects/ElteMeter/libs/XscriptParser-3.14.0.jar')
     compile project(':Request-3.14.0')
     compile project(':CoreServices-3.14.0')
+    compile files('C:/Users/Andris/StudioProjects/ElteMeter/libs/Common-3.14.0.jar')
 }
 
 repositories{
