@@ -18,3 +18,14 @@
   The code will be implemented after these blogs:
   https://blogs.sap.com/2013/02/16/how-to-create-an-android-app-on-sap-hana-one-in-7-steps/
   https://blogs.sap.com/2013/03/14/android-app-on-hana-one-extension-1/
+
+## 2017 04 23
+- Use the official soultion (SAP Mobile Platform SDK) to XS Server connection (https://help.sap.com/viewer/product/SAP_MOBILE_PLATFORM_SDK/3.0.14/en-US)
+- Setup the environment to use SMP SDK
+- Implement the authentication context (UNTESTED)
+
+## 2017 05 16
+- Implement Preferences menu. User can add application server credentials and access parameters
+- Bugfix: missing library attached
+
+

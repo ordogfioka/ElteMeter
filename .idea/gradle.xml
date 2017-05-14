@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Common-3.14.0" />
+            <option value="$PROJECT_DIR$/Connectivity-3.14.0" />
             <option value="$PROJECT_DIR$/CoreServices-3.14.0" />
             <option value="$PROJECT_DIR$/Request-3.14.0" />
             <option value="$PROJECT_DIR$/app" />

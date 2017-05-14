@@ -1,4 +1,4 @@
-package hu.elte.ordogfioka.eltemeter.Service;
+package hu.elte.ordogfioka.eltemeter.View;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,14 +12,14 @@ import static hu.elte.ordogfioka.eltemeter.Service.ClientConnection.ClientConnec
  * Created by AMakoviczki on 2017. 05. 02..
  */
 
-public class UserConnection extends Activity implements SMPClientListeners.ISMPUserRegistrationListener {
+public class UserConnectionActivity extends Activity implements SMPClientListeners.ISMPUserRegistrationListener {
     UserManager um;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //setContentView();
         um = new UserManager(clientConnection);
-        um.setUserRegistrationListener(UserConnection.this);
+        um.setUserRegistrationListener(UserConnectionActivity.this);
         try {
             um.registerUser(false);
         } catch (SMPException e) {

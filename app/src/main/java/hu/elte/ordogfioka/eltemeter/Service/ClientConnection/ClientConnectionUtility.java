@@ -8,6 +8,8 @@ import com.sap.mobile.lib.request.RequestManager;
 import com.sap.mobile.lib.supportability.Logger;
 import com.sap.smp.rest.ClientConnection;
 
+import hu.elte.ordogfioka.eltemeter.Model.PreferenceValues;
+
 /**
  * Created by AMakoviczki on 2017. 05. 02..
  */
@@ -18,19 +20,19 @@ public class ClientConnectionUtility {
     public static ConnectivityParameters param;
     public static RequestManager reqManagerObject;
     public static ClientConnection clientConnection;
+    public PreferenceValues pf;
 
     public ClientConnectionUtility(Context context){
         logger = new Logger();
         pref = new Preferences(context,logger);
         param = new ConnectivityParameters();
-        param.setUserName("");
-        param.setUserPassword("");
+        param.setUserName(pf.getUsername());
+        param.setUserPassword(pf.getPassword());
         reqManagerObject = new RequestManager(logger,pref,param,1);
 
-        //TODO: set endpoint parameters
-        clientConnection = new ClientConnection(context,"","","",reqManagerObject);
-        clientConnection.setConnectionProfile("");
-        clientConnection.setApplicationConnectionID("");
+        clientConnection = new ClientConnection(context,pf.getApplicationid(),pf.getDomain(),pf.getSecconf(),reqManagerObject);
+        clientConnection.setConnectionProfile(pf.getHostname() + ":" + pf.getPort());
+        clientConnection.setApplicationConnectionID(pf.getAppconnid());
     }
 
     public static  ClientConnection getClientConnection(){
