@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('Connectivity-3.14.0.jar'))

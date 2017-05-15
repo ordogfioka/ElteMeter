@@ -1,2 +1,1 @@
-include ':app'
-include ':app:libraries:miband-sdk'
+include ':app', ':Request-3.14.0', ':CoreServices-3.14.0', ':Common-3.14.0', ':Connectivity-3.14.0',':app:libraries:miband-sdk'

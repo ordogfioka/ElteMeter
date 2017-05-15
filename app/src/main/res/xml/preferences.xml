@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_container">
+    <EditTextPreference android:title="Username"
+        android:key="username"
+        android:summary="Please provide your username"></EditTextPreference>
+    <EditTextPreference android:title="Password"
+        android:key="password"
+        android:password="true"
+        android:summary="Please provide your password"></EditTextPreference>
+    <EditTextPreference android:title="ApplicationID"
+        android:key="appid"
+        android:summary="Please add the application id"></EditTextPreference>
+    <EditTextPreference android:title="Domain"
+        android:key="domain"
+        android:summary="Add the domain"></EditTextPreference>
+    <EditTextPreference android:title="Security configuration"
+        android:key="secconf"
+        android:summary="Please provide the security configurations"></EditTextPreference>
+    <EditTextPreference android:title="Host"
+        android:key="hostname"
+        android:summary="Please provide the hostname"></EditTextPreference>
+    <EditTextPreference android:title="Port"
+        android:key="port"
+        android:summary="Please provide the hostname"></EditTextPreference>
+    <EditTextPreference android:title="ApplicationConnectionID"
+        android:key="appconnid"
+        android:summary="Please provide the ApplicationConnectionID"></EditTextPreference>
+</PreferenceScreen >

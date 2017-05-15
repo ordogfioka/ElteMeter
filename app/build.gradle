@@ -5,10 +5,11 @@ android {
     buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "hu.elte.ordogfioka.eltemeter"
-        minSdkVersion 21
+
+        minSdkVersion 2
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,4 +29,14 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.bitalino:bitalino-java-sdk:1.1.0'
     compile project(path: ':app:libraries:miband-sdk')
+    compile project(':Request-3.14.0')
+    compile project(':CoreServices-3.14.0')
+    compile project(':Common-3.14.0')
+    compile project(':Connectivity-3.14.0')
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
 }
