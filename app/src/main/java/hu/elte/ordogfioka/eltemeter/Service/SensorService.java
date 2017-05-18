@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.bitalino.comm.BITalinoDevice;
 import com.bitalino.comm.BITalinoException;
 import com.bitalino.comm.BITalinoFrame;
+import com.zhaoxiaodan.miband.ActionCallback;
+import com.zhaoxiaodan.miband.MiBand;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,6 +43,7 @@ public class SensorService extends Service implements SensorInterface,Connection
     private boolean isBitalinoInitialized = false;
     private static final UUID APP_UUID = UUID.randomUUID();
     private final IBinder mBinder = new LocalBinder();
+    private MiBand miband;
 
     @Override
     public void onCreate() {
@@ -83,6 +86,27 @@ public class SensorService extends Service implements SensorInterface,Connection
             lm.removeUpdates(this);
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void connect(BluetoothDevice device) {
+        ActionCallback connectCallback = new ActionCallback() {
+            @Override
+            public void onSuccess(Object data) {
+                Log.i(logname,"Connected to MIBAND.");
+            }
+
+            @Override
+            public void onFail(int errorCode, String msg) {
+                Log.i(logname,"Failed to connect to MIBAND");
+            }
+        };
+        miband.connect(device,connectCallback);
+    }
+
+    @Override
+    public void startHeartRate() {
+
     }
 
     public class LocalBinder extends Binder {
