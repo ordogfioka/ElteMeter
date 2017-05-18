@@ -27,7 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile 'com.bitalino:bitalino-java-sdk:1.1.0'
-    compile 'com.zhaoxiaodan.miband:miband-sdk:1.1.2'
     compile project(':Request-3.14.0')
     compile project(':CoreServices-3.14.0')
     compile project(':Common-3.14.0')
