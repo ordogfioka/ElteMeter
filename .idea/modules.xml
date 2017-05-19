@@ -3,19 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Common-3.14.0/Common-3.14.0.iml" filepath="$PROJECT_DIR$/Common-3.14.0/Common-3.14.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Common-3.14.0/Common-3.14.0.iml" filepath="$PROJECT_DIR$/Common-3.14.0/Common-3.14.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Connectivity-3.14.0/Connectivity-3.14.0.iml" filepath="$PROJECT_DIR$/Connectivity-3.14.0/Connectivity-3.14.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/Connectivity-3.14.0/Connectivity-3.14.0.iml" filepath="$PROJECT_DIR$/Connectivity-3.14.0/Connectivity-3.14.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/CoreServices-3.14.0/CoreServices-3.14.0.iml" filepath="$PROJECT_DIR$/CoreServices-3.14.0/CoreServices-3.14.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CoreServices-3.14.0/CoreServices-3.14.0.iml" filepath="$PROJECT_DIR$/CoreServices-3.14.0/CoreServices-3.14.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/ElteMeter.iml" filepath="$PROJECT_DIR$/ElteMeter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ElteMeter.iml" filepath="$PROJECT_DIR$/ElteMeter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Request-3.14.0/Request-3.14.0.iml" filepath="$PROJECT_DIR$/Request-3.14.0/Request-3.14.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/Request-3.14.0/Request-3.14.0.iml" filepath="$PROJECT_DIR$/Request-3.14.0/Request-3.14.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/libraries/libraries.iml" filepath="$PROJECT_DIR$/app/libraries/libraries.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/libraries/miband-sdk/miband-sdk.iml" filepath="$PROJECT_DIR$/app/libraries/miband-sdk/miband-sdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

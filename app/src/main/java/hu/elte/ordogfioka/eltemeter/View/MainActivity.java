@@ -231,8 +231,9 @@ public class MainActivity extends AppCompatActivity implements SensorInterface {
         timer = null;
     }
 
-    private void heartRate(){
+    private void heartRate() {
         miband.startHeartRateScan();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
