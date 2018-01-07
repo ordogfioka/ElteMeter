@@ -34,7 +34,7 @@ class BluetoothIO extends BluetoothGattCallback {
 
     public BluetoothDevice getDevice() {
         if (null == gatt) {
-            Log.e(TAG, "connect to miband first");
+            Log.e(TAG, "connect to 0 first");
             return null;
         }
         return gatt.getDevice();

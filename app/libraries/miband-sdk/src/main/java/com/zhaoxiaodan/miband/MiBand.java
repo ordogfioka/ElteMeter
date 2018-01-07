@@ -324,7 +324,7 @@ public class MiBand {
     }
 
     public void startHeartRateScan() {
-        MiBand.this.io.writeCharacteristic(Profile.UUID_SERVICE_HEARTRATE, Profile.UUID_CHAR_HEARTRATE, Protocol.START_HEART_RATE_SCAN_CONTINUOUS, null);
+        MiBand.this.io.writeCharacteristic(Profile.UUID_SERVICE_HEARTRATE, Profile.UUID_CHAR_HEARTRATE, Protocol.START_HEART_RATE_SCAN_MANUAL, null);
     }
 
 }

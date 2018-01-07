@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -26,11 +27,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
+import com.google.common.net.MediaType;
 import com.zhaoxiaodan.miband.ActionCallback;
 import com.zhaoxiaodan.miband.MiBand;
 import com.zhaoxiaodan.miband.listeners.HeartRateNotifyListener;
+import com.zhaoxiaodan.miband.model.UserInfo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,6 +50,9 @@ import hu.elte.ordogfioka.eltemeter.R;
 import hu.elte.ordogfioka.eltemeter.Service.ConnectionInterface;
 import hu.elte.ordogfioka.eltemeter.Service.SensorInterface;
 import hu.elte.ordogfioka.eltemeter.Service.SensorService;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity implements SensorInterface {
     private TextView textView = null;
@@ -180,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements SensorInterface {
         if (pairedDevices.size() > 0) {
             // There are paired devices. Get the name and address of each paired device.
             for (BluetoothDevice device : pairedDevices) {
-                if(device.getAddress().startsWith("C8:") || device.getAddress().startsWith("c8:")){
+                if(device.getAddress().startsWith("E4:") || device.getAddress().startsWith("c8:")){
                     myDevice = device;
                 }
             }
@@ -188,12 +197,22 @@ public class MainActivity extends AppCompatActivity implements SensorInterface {
         ActionCallback connectionCallback = new ActionCallback() {
             @Override
             public void onSuccess(Object data) {
-                Log.i("MainActivity","Connection succeeded to miband.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.append("Connection succeeded to miband..");
+                    }
+                });
             }
 
             @Override
             public void onFail(int errorCode, String msg) {
-                Log.i("MainActivity","Connection failed to miband.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.append("Connection failed to miband.");
+                    }
+                });
             }
         };
         miband.connect(myDevice,connectionCallback);
@@ -208,6 +227,31 @@ public class MainActivity extends AppCompatActivity implements SensorInterface {
                     @Override
                     public void run() {
                         textView.append("HeartRate: "+heartRate + "\n");
+                        AsyncTask<Integer,Void,Void> at = new AsyncTask<Integer, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Integer... params) {
+                                OkHttpClient client = new OkHttpClient();
+                                JSONObject jo = new JSONObject();
+                                try {
+                                    jo.put("file","2-1515352324419.json")
+                                            .put("heartRate",params[0].toString());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jo.toString());
+                                Request request = new Request.Builder()
+                                        .url("https://track-my-heart-ordogfioka.c9users.io/streamData")
+                                        .post(body)
+                                        .build();
+                                try {
+                                    client.newCall(request).execute();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            }
+                        };
+                        at.execute(heartRate);
                     }
                 });
             }
@@ -217,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements SensorInterface {
             return;
         }
         timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0, 3000);
+        timer.scheduleAtFixedRate(timerTask, 0, 10000);
     }
     private Timer timer;
     private TimerTask timerTask = new TimerTask() {
